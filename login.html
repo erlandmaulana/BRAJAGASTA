@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #161b22;
+            padding: 30px;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            width: 320px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #c9d1d9;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #58a6ff;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            background-color: #238636;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2ea043;
+        }
+
+        .error {
+            color: #f85149;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .success {
+            color: #3fb950;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1>Sign in</h1>
+        <form id="loginForm">
+            <label for="username">Username</label>
+            <input type="text" id="username" required>
+
+            <button type="submit">Sign in</button>
+        </form>
+
+        <div id="message"></div>
+    </div>
+
+    <div class="footer">
+        © 2026 Login System
+    </div>
+
+<script>
+    const registeredUsers = [
+        "admin",
+        "rafa",
+        "user123",
+        "developer"
+    ];
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById("username").value.trim();
+        const messageDiv = document.getElementById("message");
+
+        if (registeredUsers.includes(username)) {
+            messageDiv.innerHTML = "<p class='success'>Login berhasil! Mengalihkan...</p>";
+
+            // Simpan status login (optional)
+            localStorage.setItem("isLoggedIn", "true");
+
+            // Redirect ke index.html
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 1000);
+
+        } else {
+            messageDiv.innerHTML = "<p class='error'>Username tidak terdaftar.</p>";
+        }
+    });
+</script>
+
+</body>
+</html>
